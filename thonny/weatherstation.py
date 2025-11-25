@@ -5,6 +5,7 @@ from bmp280 import BMP280
 from umqtt.simple import MQTTClient
 import ssl
 import config
+import ujson
 
 
 # setup wifi
@@ -59,9 +60,14 @@ def publish(mqtt_client, topic, value):
 
 
 while True:
-    # publish as MQTT payload
-    publish(client, 'weatherstation/temp', str(bmp.temperature))
-    publish(client, 'weatherstation/pressure', str(bmp.pressure))
+    data = {
+        "temperature": bmp.temperature,
+        "pressure": bmp.pressure,
+        "station": "station1"
+    }
 
-    # every 2s
-    time.sleep_ms(2000)
+    json_payload = ujson.dumps(data)
+
+    publish(client, 'weatherstation/data', json_payload)
+
+    time.sleep(5)
