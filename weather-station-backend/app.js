@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const middleware = require("./utils/middleware");
 const cors = require("cors");
+const sensorsRouter = require("./controllers/sensors")
 
 // Import mqtt module (this starts the MQTT connection)
 require("./mqtt/mqttClient");
@@ -25,7 +26,7 @@ app.use(cors());
 app.use(middleware.requestLogger);
 app.use(express.json());
 
-//app.use("/api/sensorData", sensorsRouter);
+app.use("/api/sensorData", sensorsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
