@@ -2,6 +2,7 @@ import { useLatestSensorData } from "./hooks/useLatestSensorData";
 import { useSensorHistory } from "./hooks/useSensorHistory";
 import LatestData from "./components/LatestData";
 import HistoryData from "./components/HistoryData";
+import Alerts from "./components/Alerts";
 
 const App = () => {
   const { data, loading: latestLoading } = useLatestSensorData(2000);
@@ -18,6 +19,7 @@ const App = () => {
         loading={historyLoading}
         onRefresh={refresh}
       />
+      <Alerts data={data} />
     </div>
   );
 };

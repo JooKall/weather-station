@@ -52,6 +52,7 @@ client.connect()
 # define I2C connection and BMP
 i2c = machine.I2C(id=0, sda=Pin(20), scl=Pin(21)) # id=channel
 bmp = BMP280(i2c)
+led = Pin("LED", Pin.OUT)
 
 
 def publish(mqtt_client, topic, value):
@@ -69,5 +70,12 @@ while True:
     json_payload = ujson.dumps(data)
 
     publish(client, 'weatherstation/data', json_payload)
-
-    time.sleep(5)
+    
+    if(bmp.temperature > 25 or bmp.pressure > 104000):
+        led.value(1)
+        time.sleep(1)
+        led.off()
+        time.sleep(1)
+    else:
+        led.off
+        time.sleep(5)

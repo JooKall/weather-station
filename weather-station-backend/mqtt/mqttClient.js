@@ -3,7 +3,7 @@ const config = require("../utils/config");
 const SensorData = require("../models/sensorData");
 
 // === Replace with your HiveMQ Cloud cluster info ===
-const host = "4396ee049715479fb5188a6b40ccc129.s1.eu.hivemq.cloud"; //"YOUR-CLUSTER-URL.hivemq.cloud"
+const host = '10911d3e2e824e4b871387b084bde60c.s1.eu.hivemq.cloud' //"YOUR-CLUSTER-URL.hivemq.cloud"
 const port = 8883;
 const username = config.HIVE_USERNAME;
 const password = config.HIVE_PWD;
