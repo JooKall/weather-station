@@ -1,6 +1,6 @@
 const LatestData = ({ data, loading }) => {
   
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading latest data...</p>;
   if (!data) return <p>No data available</p>;
 
   return (

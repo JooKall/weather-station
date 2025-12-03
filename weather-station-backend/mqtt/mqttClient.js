@@ -2,13 +2,13 @@ const mqtt = require("mqtt");
 const config = require("../utils/config");
 const SensorData = require("../models/sensorData");
 
-// === Replace with your HiveMQ Cloud cluster info ===
-const host = '10911d3e2e824e4b871387b084bde60c.s1.eu.hivemq.cloud' //"YOUR-CLUSTER-URL.hivemq.cloud"
+// Replace with your HiveMQ Cloud cluster info
+const host = "4396ee049715479fb5188a6b40ccc129.s1.eu.hivemq.cloud"; //"YOUR-CLUSTER-URL.hivemq.cloud"
 const port = 8883;
 const username = config.HIVE_USERNAME;
 const password = config.HIVE_PWD;
 
-// === Connection options ===
+// Connection options
 const options = {
   host,
   port,
@@ -18,10 +18,10 @@ const options = {
   rejectUnauthorized: false, // avoid certificate issues
 };
 
-// === Create MQTT client ===
+// Create MQTT client
 const client = mqtt.connect(options);
 
-// === Connection events ===
+// Connection events
 client.on("connect", () => {
   console.log("Connected to HiveMQ Cloud!");
 
@@ -35,10 +35,9 @@ client.on("connect", () => {
   });
 });
 
-// === Handle incoming MQTT messages ===
+// Handle incoming MQTT messages
 client.on("message", async (topic, message) => {
   try {
-
     const data = JSON.parse(message.toString());
     console.log("Received JSON:", data);
 
@@ -53,7 +52,7 @@ client.on("message", async (topic, message) => {
   }
 });
 
-// === Error handler ===
+// Error handler
 client.on("error", (error) => {
   console.error("MQTT Error:", error);
 });
