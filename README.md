@@ -39,18 +39,27 @@ This project uses a **Raspberry Pi Pico W running MicroPython**, a **BMP280 sens
    - Endpoints to fetch the data:
    - `GET /api/sensor/latest` → latest sensor reading
    - `GET /api/sensor` → last 10 readings
+   - `GET /api/sensor/average/:count` -> average from 'count' measurements
 
 3. **React frontend**
    - Fetches JSON data from backend periodically.
    - Displays:
      - Temperature in Celsius
      - Pressure (hPa)
+     - Averages of these
      - History (10 latest values)
    - Example UI:
      ```
      Temperature: 23.8 °C
      Pressure: 1003.75 hPa
      Timestamp: xx.xx.xx
+
+     Averages
+     Temperature: 24 °C
+     Pressure: 1003.85 hPa
+
+     History (10 latest)
+     ...
      ```
 
 ---
